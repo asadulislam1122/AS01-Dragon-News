@@ -6,7 +6,7 @@ const CategorysData = () => {
   // console.log(cetagoryPromise);
   const cetagorys = use(cetagoryPromise);
   return (
-    <div className=" md:ml-0 ml-12">
+    <div className="">
       <h2 className="text-xl font-bold">All Categorys({cetagorys.length})</h2>
       <div className="grid mt-4 gap-2 text-gray-700 font-semibold grid-cols-1">
         {cetagorys.map((cetagory) => (

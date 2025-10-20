@@ -6,7 +6,7 @@ const Category = () => {
   const { id } = useParams();
   const newsDataPromiss = useLoaderData();
   const [cetegoryNews, setCetegoryNews] = useState([]);
-  console.log(newsDataPromiss);
+  // console.log(newsDataPromiss);
   // console.log(id);
   useEffect(() => {
     if (id == 0) {

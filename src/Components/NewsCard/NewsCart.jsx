@@ -1,9 +1,18 @@
 import React from "react";
 import { FaStar, FaEye, FaShareAlt, FaRegBookmark } from "react-icons/fa";
+import { Link } from "react-router";
 
 const NewsCart = ({ news }) => {
-  const { title, rating, total_view, author, thumbnail_url, details, tags } =
-    news;
+  const {
+    title,
+    id,
+    rating,
+    total_view,
+    author,
+    thumbnail_url,
+    details,
+    tags,
+  } = news;
 
   return (
     <div className="card bg-base-100 shadow-xl  hover:shadow-2xl transition-shadow duration-300">
@@ -46,10 +55,13 @@ const NewsCart = ({ news }) => {
       <div className="card-body px-4 pt-2 pb-0">
         <p className="text-sm text-gray-600">
           {details.slice(0, 200)}...
-          <span className="text-primary font-medium cursor-pointer">
+          <Link
+            to={`/details/${id}`}
+            className="text-primary font-medium cursor-pointer"
+          >
             {" "}
             Read More
-          </span>
+          </Link>
         </p>
 
         {/* Tags */}
