@@ -63,71 +63,77 @@ const Login = () => {
   };
 
   return (
-    <div className="flex justify-center items-center">
-      <div className="card bg-base-100 w-full max-w-sm shadow-2xl mt-10 py-5 px-4">
-        <Marquee>
-          <h2 className="font-semibold text-2xl text-center text-green-600">
-            Login to Your Account
-          </h2>
-        </Marquee>
+    <div className="flex justify-center items-center ">
+      <div className="relative card w-full max-w-sm shadow-2xl mt-2 py-5 px-4 bg-img bg-cover bg-center overflow-hidden">
+        {/* 🔹 Overlay: Makes form color stronger and image softer */}
+        <div className="absolute inset-0 bg-gray-200/30 backdrop-blur-[1px]"></div>
 
-        <div className="card-body">
-          <form onSubmit={handleLogin}>
-            <fieldset className="fieldset">
-              <label className="label">Email</label>
-              <input
-                type="email"
-                name="email"
-                className="input input-bordered"
-                placeholder="Enter your email"
-                required
-              />
+        {/* 🔹 Actual content (kept above overlay) */}
+        <div className="relative z-10">
+          <Marquee>
+            <h2 className="font-semibold text-2xl text-center text-green-600">
+              Login to Your Account
+            </h2>
+          </Marquee>
 
-              <label className="label mt-2">Password</label>
-
-              {/* 🔒 Password field with toggle icon */}
-              <div className="relative">
+          <div className="card-body">
+            <form onSubmit={handleLogin}>
+              <fieldset className="fieldset">
+                <label className="label">Email</label>
                 <input
-                  type={showPassword ? "text" : "password"}
-                  name="password"
-                  className="input input-bordered w-full pr-10"
-                  placeholder="Enter your password"
+                  type="email"
+                  name="email"
+                  className="input input-bordered"
+                  placeholder="Enter your email"
                   required
                 />
+
+                <label className="label mt-2">Password</label>
+
+                {/* 🔒 Password field with toggle icon */}
+                <div className="relative">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    name="password"
+                    className="input input-bordered w-full pr-10"
+                    placeholder="Enter your password"
+                    required
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute inset-y-0 right-3 flex items-center text-gray-600"
+                  >
+                    {showPassword ? <FaEyeSlash /> : <FaEye />}
+                  </button>
+                </div>
+
+                <div className="mt-2 text-right">
+                  <a className="link link-hover text-sm text-blue-600">
+                    Forgot password?
+                  </a>
+                </div>
+
                 <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute inset-y-0 right-3 flex items-center text-gray-600"
+                  type="submit"
+                  disabled={loading}
+                  className="btn bg-gradient-to-r from-orange-400 via-blue-500 to-pink-500 mt-4 text-white"
                 >
-                  {showPassword ? <FaEyeSlash /> : <FaEye />}
+                  {loading ? "Logging in..." : "Login"}
                 </button>
-              </div>
+              </fieldset>
+            </form>
 
-              <div className="mt-2 text-right">
-                <a className="link link-hover text-sm text-blue-600">
-                  Forgot password?
-                </a>
-              </div>
-
-              <button
-                type="submit"
-                disabled={loading}
-                className="btn bg-gradient-to-r from-orange-400 via-blue-500 to-pink-500 mt-4 text-white"
+            <p className="font-semibold mt-4 text-center">
+              Don’t have an account?{" "}
+              <Link
+                className="text-green-600 font-semibold hover:underline"
+                to={"/auth/register"}
               >
-                {loading ? "Logging in..." : "Login"}
-              </button>
-            </fieldset>
-          </form>
-
-          <p className="font-semibold mt-4 text-center">
-            Don’t have an account?{" "}
-            <Link
-              className="text-green-600 font-semibold hover:underline"
-              to={"/auth/register"}
-            >
-              Register
-            </Link>
-          </p>
+                Register
+              </Link>
+            </p>
+          </div>
         </div>
       </div>
 

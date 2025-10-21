@@ -55,94 +55,101 @@ const Register = () => {
   };
 
   return (
-    <div className="flex justify-center items-center">
-      <div className="card bg-base-100 w-full max-w-sm shadow-2xl mt-10 py-5 px-2">
-        <Marquee>
-          <h2 className="font-semibold text-2xl text-center text-blue-600">
-            Register your Account
-          </h2>
-        </Marquee>
+    <div className="flex justify-center items-center ">
+      <div className="relative card w-full max-w-sm shadow-2xl mt-10 py-5 px-4 bg-img bg-cover bg-center overflow-hidden">
+        {/* 🔹 Gradient Overlay (form color prominent রাখার জন্য) */}
+        <div className="absolute inset-0 bg-gradient-to-r from-pink-200/50 to-gray-200/50 backdrop-blur-[1px]"></div>
 
-        <div className="card-body">
-          <form onSubmit={handleRegister}>
-            <fieldset className="fieldset">
-              {/* Name */}
-              <label className="label">Name</label>
-              <input
-                name="name"
-                type="text"
-                className="input input-bordered"
-                placeholder="Name"
-                required
-              />
+        {/* 🔹 Actual content (z-10 for visibility) */}
+        <div className="relative z-10">
+          <Marquee>
+            <h2 className="font-semibold text-2xl text-center text-blue-600">
+              Register your Account
+            </h2>
+          </Marquee>
 
-              {/* Photo URL */}
-              <label className="label">Photo URL</label>
-              <input
-                type="text"
-                name="photoUrl"
-                className="input input-bordered"
-                placeholder="Photo URL"
-                required
-              />
-
-              {/* Email */}
-              <label className="label">Email</label>
-              <input
-                type="email"
-                name="email"
-                className="input input-bordered"
-                placeholder="Email"
-                required
-              />
-
-              {/* Password */}
-              <label className="label">Password</label>
-              <div className="relative">
+          <div className="card-body">
+            <form onSubmit={handleRegister}>
+              <fieldset className="fieldset">
+                {/* Name */}
+                <label className="label">Name</label>
                 <input
-                  type={showPassword ? "text" : "password"}
-                  name="password"
-                  className="input input-bordered w-full pr-10"
-                  placeholder="Password"
+                  name="name"
+                  type="text"
+                  className="input input-bordered"
+                  placeholder="Name"
                   required
                 />
+
+                {/* Photo URL */}
+                <label className="label">Photo URL</label>
+                <input
+                  type="text"
+                  name="photoUrl"
+                  className="input input-bordered"
+                  placeholder="Photo URL"
+                  required
+                />
+
+                {/* Email */}
+                <label className="label">Email</label>
+                <input
+                  type="email"
+                  name="email"
+                  className="input input-bordered"
+                  placeholder="Email"
+                  required
+                />
+
+                {/* Password */}
+                <label className="label">Password</label>
+                <div className="relative">
+                  <input
+                    type={showPassword ? "text" : "password"}
+                    name="password"
+                    className="input input-bordered w-full pr-10"
+                    placeholder="Password"
+                    required
+                  />
+                  <button
+                    type="button"
+                    onClick={() => setShowPassword(!showPassword)}
+                    className="absolute inset-y-0 right-3 flex items-center text-gray-600"
+                  >
+                    {showPassword ? <FaEyeSlash /> : <FaEye />}
+                  </button>
+                </div>
+
+                <div className="mt-2 text-right">
+                  <a className="link link-hover text-sm text-blue-600">
+                    Forgot password?
+                  </a>
+                </div>
+
                 <button
-                  type="button"
-                  onClick={() => setShowPassword(!showPassword)}
-                  className="absolute inset-y-0 right-3 flex items-center text-gray-600"
+                  type="submit"
+                  disabled={loading}
+                  className="btn bg-gradient-to-r from-orange-400 via-blue-500 to-pink-500 mt-4 text-white"
                 >
-                  {showPassword ? <FaEyeSlash /> : <FaEye />}
+                  {loading ? "Creating..." : "Register"}
                 </button>
-              </div>
+              </fieldset>
+            </form>
 
-              <div>
-                <a className="link link-hover text-sm text-blue-600">
-                  Forgot password?
-                </a>
-              </div>
-
-              <button
-                type="submit"
-                disabled={loading}
-                className="btn bg-gradient-to-r from-orange-400 via-blue-500 to-pink-500 mt-4 text-white"
+            <p className="font-semibold mt-4 text-center">
+              Already Have An Account?{" "}
+              <Link
+                className="text-green-600 font-semibold hover:underline ml-1"
+                to={"/auth/login"}
               >
-                {loading ? "Creating..." : "Register"}
-              </button>
-            </fieldset>
-          </form>
-
-          <p className="font-semibold mt-4 text-center">
-            Already Have An Account?{" "}
-            <Link
-              className="text-green-500 font-semibold hover:underline ml-1"
-              to={"/auth/login"}
-            >
-              Login
-            </Link>
-          </p>
+                Login
+              </Link>
+            </p>
+          </div>
         </div>
       </div>
 
+      {/* Toastify container */}
       <ToastContainer />
     </div>
   );

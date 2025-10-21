@@ -1,0 +1,8 @@
+.bg-img {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+    url("https://i.ibb.co.com/r2hCqQtk/Gemini-Generated-Image-h7kz5th7kz5th7kz.png");
+  background-size: cover;
+
+  background-repeat: no-repeat;
+  background-attachment: fixed; /* optional: smooth scroll effect */
+}
